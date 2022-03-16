@@ -1,20 +1,16 @@
-import { Logo } from './logo'
+import Router, { Route } from 'preact-router';
+import NavBar from './NavBar';
+import Stopwatch from './Stopwatch';
+import Timer from './Timer';
 
-export function App() {
-  return (
-    <>
-      <Logo />
-      <p>Hello Vite + Preact!</p>
-      <p>
-        <a
-          class="link"
-          href="https://preactjs.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Preact
-        </a>
-      </p>
-    </>
-  )
+export default function App() {
+	return (
+		<>
+			<NavBar />
+			<Router>
+				<Route path="/timer" component={Timer} />
+				<Route path="/stopwatch" component={Stopwatch} />
+			</Router>
+		</>
+	);
 }
