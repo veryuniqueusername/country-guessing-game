@@ -9,7 +9,19 @@ export default function Timer() {
 	const [isActive, setActive] = useState(false);
 	const countRef = useRef(0);
 
-	// setTime(hour * 360000 + minute * 6000 + second * 100 + hundredth);
+	const hourRef = useRef<HTMLInputElement>(null);
+	const minuteRef = useRef<HTMLInputElement>(null);
+	const secondRef = useRef<HTMLInputElement>(null);
+	const hundredthRef = useRef<HTMLInputElement>(null);
+
+	if (!isActive) {
+		setTime(hour * 360000 + minute * 6000 + second * 100 + hundredth);
+	} else {
+		setHour(Math.floor(time / 360000));
+		setMinute(Math.floor((time / 6000) % 60));
+		setSecond(Math.floor((time / 100) % 60));
+		setHundredth(Math.floor(time % 100));
+	}
 
 	function toggle() {
 		setActive(!isActive);
@@ -32,23 +44,42 @@ export default function Timer() {
 
 	return (
 		<>
-			<p className="time">{formatTime(time)}</p>
+			<p className="time">
+				<input
+					onChange={() =>
+						setHour(hourRef.current ? parseInt(hourRef.current.value) : 0)
+					}
+					max="99"
+					type="number"
+					value={hour}
+				/>
+				:
+				<input
+					onChange={() => setMinute(minuteRef.current.value)}
+					max="59"
+					type="number"
+					value={minute}
+				/>
+				:
+				<input
+					onChange={() => setSecond(secondRef.current.value)}
+					max="59"
+					type="number"
+					value={second}
+				/>
+				.
+				<input
+					onChange={() => setHundredth(hundredthRef.current.value)}
+					value={hundredth}
+					max="99"
+					maxLength={2}
+					type="number"
+					ref={hundredthRef}
+				/>
+			</p>
 			<button onClick={toggle} className="button">
 				{isActive ? 'Pause' : 'Start'}
 			</button>
 		</>
 	);
-}
-
-function formatTime(time: number) {
-	// format hundredths of a second to hh:mm:ss.ll as a string
-	const hours = Math.floor(time / 100 / 3600);
-	const minutes = Math.floor(((time / 100) % 3600) / 60);
-	const seconds = Math.floor((time / 100) % 60);
-	const hundredths = Math.floor(time % 100);
-	return `${hours < 10 ? `0${hours}` : hours}:${
-		minutes < 10 ? `0${minutes}` : minutes
-	}:${seconds < 10 ? `0${seconds}` : seconds}.${
-		hundredths < 10 ? `0${hundredths}` : hundredths
-	}`;
 }
