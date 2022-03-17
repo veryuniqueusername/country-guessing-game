@@ -1,6 +1,6 @@
-import { Link } from 'preact-router';
 import { useState, useEffect } from 'preact/hooks';
-import { IoStopwatchOutline, IoTimerOutline } from 'react-icons/io5';
+import StopwatchIcon from 'mdi-preact/TimerOutlineIcon';
+import TimerIcon from 'mdi-preact/AvTimerIcon';
 
 export default function NavBar() {
 	const [dateTime, setDateTime] = useState(new Date());
@@ -15,13 +15,13 @@ export default function NavBar() {
 		<>
 			<div className="NavBar">
 				<a href="/stopwatch" className="link">
-					<IoStopwatchOutline />
+					<StopwatchIcon size="1em" />
 				</a>
 				<p className="realTime">
 					{dateTime.toLocaleTimeString([], { hour12: false })}
 				</p>
 				<a href="/timer" className="link">
-					<IoTimerOutline />
+					<TimerIcon size="1em" />
 				</a>
 			</div>
 		</>

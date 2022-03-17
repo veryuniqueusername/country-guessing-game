@@ -8,11 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mdi-preact": "^8.2.0",
     "preact": "^10.5.15",
     "preact-router": "^4.0.1",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-    "react-icons": "^4.3.1",
     "remove": "^0.1.5"
   },
   "devDependencies": {
