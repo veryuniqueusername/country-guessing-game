@@ -63,6 +63,7 @@ export default function Timer() {
 
 	function reset() {
 		setActive(false);
+		hourRef.current!.style.width = '1.5ch';
 		localStorage.setItem('timerTime', '0');
 		setTime(0);
 		setHour(0);
