@@ -10,8 +10,7 @@
   "dependencies": {
     "mdi-preact": "^8.2.0",
     "preact": "^10.5.15",
-    "preact-router": "^4.0.1",
-    "remove": "^0.1.5"
+    "preact-router": "^4.0.1"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.1.5",
