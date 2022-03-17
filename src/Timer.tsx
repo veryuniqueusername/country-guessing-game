@@ -52,24 +52,35 @@ export default function Timer() {
 					max="99"
 					type="number"
 					value={hour}
+					ref={hourRef}
 				/>
 				:
 				<input
-					onChange={() => setMinute(minuteRef.current.value)}
+					onChange={() =>
+						setMinute(minuteRef.current ? parseInt(minuteRef.current.value) : 0)
+					}
 					max="59"
 					type="number"
 					value={minute}
+					ref={minuteRef}
 				/>
 				:
 				<input
-					onChange={() => setSecond(secondRef.current.value)}
+					onChange={() =>
+						setSecond(secondRef.current ? parseInt(secondRef.current.value) : 0)
+					}
 					max="59"
 					type="number"
 					value={second}
+					ref={secondRef}
 				/>
 				.
 				<input
-					onChange={() => setHundredth(hundredthRef.current.value)}
+					onChange={() =>
+						setHundredth(
+							hundredthRef.current ? parseInt(hundredthRef.current.value) : 0
+						)
+					}
 					value={hundredth}
 					max="99"
 					maxLength={2}
