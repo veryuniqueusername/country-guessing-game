@@ -88,19 +88,29 @@ export default function Timer() {
 		};
 	}, [isActive]);
 
+	useEffect(() => {
+		hourRef.current!.style.width = `${hourRef.current!.value.length}.5ch`;
+	}, []);
+
+	function updateTimerTime() {
+		setTime(hour * 360000 + minute * 6000 + second * 100 + hundredth);
+		localStorage.setItem('timerTime', time.toString());
+	}
+
 	return (
 		<>
 			<p className="time">
 				<input
-					onChange={() =>
+					onChange={() => {
 						setHour(
 							hourRef.current
 								? parseInt(hourRef.current.value)
 									? parseInt(hourRef.current.value)
 									: 0
 								: 0
-						)
-					}
+						);
+						updateTimerTime();
+					}}
 					max="999"
 					type="number"
 					value={hour}
@@ -112,15 +122,16 @@ export default function Timer() {
 				/>
 				:
 				<input
-					onChange={() =>
+					onChange={() => {
 						setMinute(
 							minuteRef.current
 								? parseInt(minuteRef.current.value)
 									? parseInt(minuteRef.current.value)
 									: 0
 								: 0
-						)
-					}
+						);
+						updateTimerTime();
+					}}
 					max="59"
 					type="number"
 					value={addZero(minute) || '00'}
@@ -128,15 +139,16 @@ export default function Timer() {
 				/>
 				:
 				<input
-					onChange={() =>
+					onChange={() => {
 						setSecond(
 							secondRef.current
 								? parseInt(secondRef.current.value)
 									? parseInt(secondRef.current.value)
 									: 0
 								: 0
-						)
-					}
+						);
+						updateTimerTime();
+					}}
 					max="59"
 					type="number"
 					value={addZero(second)}
@@ -144,15 +156,16 @@ export default function Timer() {
 				/>
 				.
 				<input
-					onChange={() =>
+					onChange={() => {
 						setHundredth(
 							hundredthRef.current
 								? parseInt(hundredthRef.current.value)
 									? parseInt(hundredthRef.current.value)
 									: 0
 								: 0
-						)
-					}
+						);
+						updateTimerTime();
+					}}
 					value={addZero(hundredth)}
 					max="99"
 					type="number"
