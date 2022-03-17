@@ -1,18 +1,40 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 
 export default function Stopwatch() {
-	const [time, setTime] = useState(0);
-	const [isActive, setActive] = useState(false);
+	const [time, setTime] = useState(
+		localStorage.getItem('stopwatchActive') === 'true'
+			? parseInt(localStorage.getItem('stopwatchTime') || '0') +
+					(Date.now() -
+						parseInt(localStorage.getItem('stopwatchDateTime') || '0')) /
+						10
+			: parseInt(localStorage.getItem('stopwatchTime') || '0')
+	);
+	const [isActive, setActive] = useState(
+		localStorage.getItem('stopwatchActive') === 'true'
+	);
 	const countRef = useRef(0);
+
+	localStorage.setItem('stopwatchTime', time.toString());
+	localStorage.setItem('stopwatchDateTime', Date.now().toString());
+	localStorage.setItem('stopwatchActive', isActive.toString());
 
 	useEffect(() => {
 		if (isActive) {
 			countRef.current = setInterval(() => {
-				setTime((time) => time + 1);
+				setTime(
+					(time) =>
+						time +
+						(Date.now() -
+							parseInt(localStorage.getItem('stopwatchDateTime')!)) /
+							10
+				);
 			}, 10);
 		} else if (!isActive && countRef.current) {
 			clearInterval(countRef.current);
 		}
+		return () => {
+			clearInterval(countRef.current);
+		};
 	}, [isActive]);
 
 	function toggle() {

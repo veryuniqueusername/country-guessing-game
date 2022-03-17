@@ -39,7 +39,7 @@ body {
 	text-align: center;
 	background-color: #383547;
 	color: #ffeee0;
-	font-size: min(10vw, 8vh);
+	font-size: min(8vw, 8vh);
 	padding-top: 0;
 }
 
@@ -85,14 +85,23 @@ body {
 input {
 	border: none;
 	border-radius: 0.3em;
-	padding: 0.1em 0.3em;
+	padding: 0em;
+	margin: 0;
 	background-color: #0000;
 	color: #ffeee0;
 	font-size: 1em;
 	font-family: monospace;
-	width: 2em;
+	width: 2.5ch;
+	height: 1.1em;
 	text-align: center;
-	&:active {
+	outline: #ffeee050 solid 1px;
+	outline-offset: 0;
+	box-shadow: none;
+	&:active,
+	&:focus {
+		outline: #ffeee050 solid 1px;
+		outline-offset: 0;
+		box-shadow: none;
 		background-color: #0002;
 		border: none;
 	}
@@ -100,5 +109,10 @@ input {
 		background-color: #0004;
 		cursor: pointer;
 	}
-	transition: background-color 0.05s ease-in-out;
+	&::-webkit-inner-spin-button {
+		-moz-appearance: none; /* Firefox */
+		-webkit-appearance: none; /* Safari and Chrome */
+		appearance: none;
+	}
+	transition: background-color 0.1s ease-in-out;
 }
