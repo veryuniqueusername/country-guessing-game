@@ -5,10 +5,8 @@ export default function Timer() {
 		Math.max(
 			0,
 			localStorage.getItem('timerActive') === 'true'
-				? parseInt(localStorage.getItem('timerTime') || '0') -
-						(Date.now() -
-							parseInt(localStorage.getItem('timerDateTime') || '0')) /
-							10
+				? (parseInt(localStorage.getItem('timerEndTime') || '0') - Date.now()) /
+						10
 				: parseInt(localStorage.getItem('timerTime') || '0')
 		)
 	);
@@ -29,15 +27,6 @@ export default function Timer() {
 	if (hour < 0) {
 		setHour(0);
 	}
-	if (minute < 0) {
-		setMinute(0);
-	}
-	if (second < 0) {
-		setSecond(0);
-	}
-	if (hundredth < 0) {
-		setHundredth(0);
-	}
 
 	if (time < 0) {
 		setActive(false);
@@ -53,12 +42,21 @@ export default function Timer() {
 		setSecond(Math.floor((time / 100) % 60));
 		setHundredth(Math.floor(time % 100));
 		localStorage.setItem('timerTime', time.toString());
-		localStorage.setItem('timerDateTime', Date.now().toString());
 		localStorage.setItem('timerActive', isActive.toString());
 	}
 
 	function toggle() {
-		setActive(!isActive);
+		if (isActive) pause();
+		else start();
+	}
+
+	function start() {
+		setActive(true);
+		localStorage.setItem('timerEndTime', (Date.now() + time * 10).toString());
+	}
+
+	function pause() {
+		setActive(false);
 	}
 
 	function reset() {
@@ -76,9 +74,12 @@ export default function Timer() {
 		if (isActive) {
 			countRef.current = setInterval(() => {
 				setTime(
-					(time) =>
-						time -
-						(Date.now() - parseInt(localStorage.getItem('timerDateTime')!)) / 10
+					() =>
+						(parseInt(
+							localStorage.getItem('timerEndTime') || Date.now().toString()
+						) -
+							Date.now()) /
+						10
 				);
 			}, 10);
 		} else if (!isActive && countRef.current) {
@@ -94,8 +95,17 @@ export default function Timer() {
 	}, []);
 
 	function updateTimerTime() {
-		setTime(hour * 360000 + minute * 6000 + second * 100 + hundredth);
-		localStorage.setItem('timerTime', time.toString());
+		const newTime =
+			parseInt(hourRef.current!.value) * 360000 +
+			parseInt(minuteRef.current!.value) * 6000 +
+			parseInt(secondRef.current!.value) * 100 +
+			parseInt(hundredthRef.current!.value);
+		setTime(newTime);
+		setHour(splitTime(newTime)[0]);
+		setMinute(splitTime(newTime)[1]);
+		setSecond(splitTime(newTime)[2]);
+		setHundredth(splitTime(newTime)[3]);
+		localStorage.setItem('timerTime', newTime.toString());
 	}
 
 	return (
@@ -103,54 +113,43 @@ export default function Timer() {
 			<p className="time">
 				<input
 					onChange={() => {
-						setHour(
-							hourRef.current
-								? parseInt(hourRef.current.value)
-									? parseInt(hourRef.current.value)
-									: 0
-								: 0
-						);
+						hourRef.current!.value === '-1'
+							? (hourRef.current!.value = '0')
+							: null;
 						updateTimerTime();
 					}}
 					max="999"
 					type="number"
 					value={hour}
 					ref={hourRef}
-					size={53}
 					style={{
-						width: `${hourRef.current?.value.length || 1}.5ch`,
+						width: `${splitTime(time)[0].toString().length}.5ch`,
 					}}
 				/>
 				:
 				<input
 					onChange={() => {
-						setMinute(
-							minuteRef.current
-								? parseInt(minuteRef.current.value)
-									? parseInt(minuteRef.current.value)
-									: 0
-								: 0
-						);
+						hourRef.current!.value === '0' && minuteRef.current!.value === '-1'
+							? (minuteRef.current!.value = '00')
+							: null;
 						updateTimerTime();
 					}}
-					max="59"
+					max="60"
 					type="number"
-					value={addZero(minute) || '00'}
+					value={addZero(minute)}
 					ref={minuteRef}
 				/>
 				:
 				<input
 					onChange={() => {
-						setSecond(
-							secondRef.current
-								? parseInt(secondRef.current.value)
-									? parseInt(secondRef.current.value)
-									: 0
-								: 0
-						);
+						hourRef.current!.value === '0' &&
+						minuteRef.current!.value === '00' &&
+						secondRef.current!.value === '-1'
+							? (secondRef.current!.value = '00')
+							: null;
 						updateTimerTime();
 					}}
-					max="59"
+					max="60"
 					type="number"
 					value={addZero(second)}
 					ref={secondRef}
@@ -158,17 +157,16 @@ export default function Timer() {
 				.
 				<input
 					onChange={() => {
-						setHundredth(
-							hundredthRef.current
-								? parseInt(hundredthRef.current.value)
-									? parseInt(hundredthRef.current.value)
-									: 0
-								: 0
-						);
+						hourRef.current!.value === '0' &&
+						minuteRef.current!.value === '00' &&
+						secondRef.current!.value === '00' &&
+						hundredthRef.current!.value === '-1'
+							? (hundredthRef.current!.value = '00')
+							: null;
 						updateTimerTime();
 					}}
 					value={addZero(hundredth)}
-					max="99"
+					max="100"
 					type="number"
 					ref={hundredthRef}
 				/>
@@ -184,5 +182,13 @@ export default function Timer() {
 }
 
 function addZero(num: number) {
-	return num < 10 ? '0' + num : num;
+	return num < 10 && num >= 0 ? '0' + num : num;
+}
+
+function splitTime(time: number) {
+	const hours = Math.floor(time / 100 / 3600);
+	const minutes = Math.floor(((time / 100) % 3600) / 60);
+	const seconds = Math.floor((time / 100) % 60);
+	const hundredths = Math.floor(time % 100);
+	return [hours, minutes, seconds, hundredths];
 }
