@@ -95,11 +95,14 @@ export default function Timer() {
 	}, []);
 
 	function updateTimerTime() {
-		const newTime =
+		let newTime =
 			parseInt(hourRef.current!.value) * 360000 +
 			parseInt(minuteRef.current!.value) * 6000 +
 			parseInt(secondRef.current!.value) * 100 +
 			parseInt(hundredthRef.current!.value);
+		if (newTime < 0) {
+			newTime = 0;
+		}
 		setTime(newTime);
 		setHour(splitTime(newTime)[0]);
 		setMinute(splitTime(newTime)[1]);
