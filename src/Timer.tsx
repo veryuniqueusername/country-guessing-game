@@ -28,7 +28,7 @@ export default function Timer() {
 		setHour(0);
 	}
 
-	if (time < 0) {
+	if (time <= 0) {
 		setActive(false);
 		setTime(0);
 		localStorage.setItem('timerTime', '0');
