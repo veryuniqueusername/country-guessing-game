@@ -32,6 +32,7 @@ export default function Timer() {
 		setActive(false);
 		setTime(0);
 		localStorage.setItem('timerTime', '0');
+		localStorage.setItem('timerActive', 'false');
 	}
 
 	if (!isActive) {
