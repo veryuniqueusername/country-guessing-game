@@ -113,7 +113,7 @@ export default function Timer() {
 			<p className="time">
 				<input
 					onChange={() => {
-						hourRef.current!.value === '-1'
+						parseInt(hourRef.current!.value) < 0
 							? (hourRef.current!.value = '0')
 							: null;
 						updateTimerTime();
@@ -129,7 +129,8 @@ export default function Timer() {
 				:
 				<input
 					onChange={() => {
-						hourRef.current!.value === '0' && minuteRef.current!.value === '-1'
+						parseInt(hourRef.current!.value) <= 0 &&
+						parseInt(minuteRef.current!.value) < 0
 							? (minuteRef.current!.value = '00')
 							: null;
 						updateTimerTime();
@@ -142,9 +143,9 @@ export default function Timer() {
 				:
 				<input
 					onChange={() => {
-						hourRef.current!.value === '0' &&
-						minuteRef.current!.value === '00' &&
-						secondRef.current!.value === '-1'
+						parseInt(hourRef.current!.value) <= 0 &&
+						parseInt(minuteRef.current!.value) <= 0 &&
+						parseInt(secondRef.current!.value) < 0
 							? (secondRef.current!.value = '00')
 							: null;
 						updateTimerTime();
@@ -157,10 +158,10 @@ export default function Timer() {
 				.
 				<input
 					onChange={() => {
-						hourRef.current!.value === '0' &&
-						minuteRef.current!.value === '00' &&
-						secondRef.current!.value === '00' &&
-						hundredthRef.current!.value === '-1'
+						parseInt(hourRef.current!.value) <= 0 &&
+						parseInt(minuteRef.current!.value) <= 0 &&
+						parseInt(secondRef.current!.value) <= 0 &&
+						parseInt(hundredthRef.current!.value) < 0
 							? (hundredthRef.current!.value = '00')
 							: null;
 						updateTimerTime();
