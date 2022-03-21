@@ -31,6 +31,7 @@ export default function Timer() {
 	if (time < 0) {
 		setActive(false);
 		setTime(0);
+		localStorage.setItem('timerTime', '0');
 	}
 
 	if (!isActive) {
@@ -73,13 +74,15 @@ export default function Timer() {
 	useEffect(() => {
 		if (isActive) {
 			countRef.current = setInterval(() => {
-				setTime(
-					() =>
+				setTime(() =>
+					Math.max(
+						0,
 						(parseInt(
 							localStorage.getItem('timerEndTime') || Date.now().toString()
 						) -
 							Date.now()) /
-						10
+							10
+					)
 				);
 			}, 10);
 		} else if (!isActive && countRef.current) {
