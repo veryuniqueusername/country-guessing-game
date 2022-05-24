@@ -24,8 +24,6 @@ export default function App() {
 	);
 }
 
-type T = keyof typeof list;
-
 function Country({ code }: { code: string }) {
 	// @ts-ignore
 	const name = list[code];
