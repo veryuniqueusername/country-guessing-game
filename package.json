@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^17.0.35",
     "mdi-preact": "^8.2.0",
     "preact": "^10.5.15",
     "preact-router": "^4.0.1"

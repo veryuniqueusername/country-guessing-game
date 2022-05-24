@@ -1,118 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Lato&display=swap');
+
 html,
 body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #fafafa;
-	font-family: monospace;
+	background: #4d3032;
+	font-family: 'Lato';
 	font-weight: 400;
-	color: #444;
+	color: #fafaea;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
 
-* {
-	box-sizing: border-box;
-}
-
-.NavBar {
-	background-color: #2a2935;
-	padding: 0.2em;
-	border-bottom: #aaa2 solid 1px;
-	box-shadow: 0 -1em 0.2em 1em #0008;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	gap: 32px;
+}
+
+.Container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
 	justify-content: center;
-	flex-direction: row;
-	font-size: min(15vw, 15vh, 100px);
-	& > * {
-		font-size: min(15vw, 15vh, 100px);
-		margin: 0 0.2em;
-		display: flex;
-		align-content: center;
-	}
+	align-items: center;
+	justify-items: center;
+	background: #372324;
 }
 
-#app {
-	height: 100%;
+h1 {
+	margin-top: 0;
+	padding-top: 0.5em;
 	text-align: center;
-	background-color: #383547;
-	color: #ffeee0;
-	font-size: min(8vw, 8vh);
-	padding-top: 0;
-}
-
-.button {
-	border: 0.1em solid #ffeee0;
-	border-radius: 0.3em;
-	padding: 0.1em 0.3em;
-	margin: 1em 0.5em 0.5em 0.5em;
-	background-color: #0000;
-	color: #ffeee0;
-	font-size: 1em;
-	font-family: monospace;
-	&.activeButton {
-		background-color: #0002;
-	}
-	&:hover {
-		background-color: #0004;
-		cursor: pointer;
-	}
-	transition: background-color 0.1s ease-in-out;
-}
-
-.time {
-	font-size: 1.5em;
-}
-
-.realTime {
-	padding: 0;
-	margin: 0;
-	font-size: 0.8em;
-}
-
-.link {
-	color: #ffeee0;
-	text-decoration: none;
-	&:hover {
-		color: #e4d2c4;
-		text-decoration: underline;
-	}
-	transition: color 0.1s ease-in-out;
-}
-
-input {
-	border: none;
-	border-radius: 0.3em;
-	padding: 0em;
-	margin: 0;
-	background-color: #0002;
-	color: #ffeee0;
-	font-size: 1em;
-	font-family: monospace;
-	width: 2.5ch;
-	height: 1.1em;
-	text-align: center;
-	outline: #ffeee050 solid 1px;
-	outline-offset: 0;
-	box-shadow: none;
-	&:active,
-	&:focus {
-		outline: #ffeee050 solid 1px;
-		outline-offset: 0;
-		box-shadow: none;
-		background-color: #0002;
-		border: none;
-	}
-	&:hover {
-		background-color: #0004;
-		cursor: pointer;
-	}
-	&::-webkit-inner-spin-button {
-		-moz-appearance: none; /* Firefox */
-		-webkit-appearance: none; /* Safari and Chrome */
-		appearance: none;
-	}
-	transition: background-color 0.1s ease-in-out;
+	letter-spacing: 2px;
 }
