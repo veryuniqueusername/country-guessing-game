@@ -3,6 +3,7 @@ import { lczList } from './countryLocalization';
 import ChevronUp from 'mdi-preact/ChevronUpIcon';
 import ChevronDown from 'mdi-preact/ChevronDownIcon';
 import { Code } from './codeType';
+import { getName } from './App';
 
 export default function Country({
 	info,
@@ -18,7 +19,7 @@ export default function Country({
 }) {
 	const [expanded, setExpanded] = useState(false);
 
-	const name = lczList[info.code];
+	const name = getName(info.code);
 
 	function expand() {
 		setExpanded(!expanded);

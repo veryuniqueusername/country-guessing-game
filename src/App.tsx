@@ -3,7 +3,7 @@ import { Code } from './codeType';
 import { lczList } from './countryLocalization';
 import Country from './Country';
 
-function getCode(name: string): Code | undefined {
+export function getCode(name: string): Code | undefined {
 	if (name.toLowerCase() in lczList) {
 		return name.toLowerCase() as Code;
 	}
@@ -17,8 +17,9 @@ function getCode(name: string): Code | undefined {
 	return code !== undefined ? (code as Code) : undefined;
 }
 
-function getName(country: Code) {
-	return lczList[country];
+export function getName(country: Code) {
+	console.log(lczList[country][0]);
+	return lczList[country][0];
 }
 
 export default function App() {
@@ -205,7 +206,7 @@ function SearchBar({
 
 function WrongCountries({ list }: { list: Code[] }) {
 	let elements = list.map((country) => {
-		return <p>{lczList[country]}</p>;
+		return <p>{getName(country)}</p>;
 	});
 
 	return (
