@@ -1,5 +1,3 @@
-// export type Code = keyof typeof lczList;
-
 import { Code } from './codeType';
 
 export const lczList: { [K in Code]: string[] } = {
@@ -40,7 +38,7 @@ export const lczList: { [K in Code]: string[] } = {
 		'Congo Kinshasa',
 	],
 	cf: ['Central African Republic', 'CAR'],
-	cg: ['Congo', 'Congo Brazzaville'],
+	cg: ['Congo', 'Congo Brazzaville', 'Republic of the Congo'],
 	ch: ['Switzerland'],
 	ci: ["Côte d'Ivoire", 'Ivory Coast'],
 	cl: ['Chile'],
@@ -181,7 +179,7 @@ export const lczList: { [K in Code]: string[] } = {
 	so: ['Somalia'],
 	sr: ['Suriname'],
 	ss: ['South Sudan'],
-	st: ['Sao Tome and Principe'],
+	st: ['São Tomé and Príncipe', 'Sao Tome and Principe'],
 	sv: ['El Salvador'],
 	sy: ['Syria', 'Syrian Arab Republic'],
 	sz: ['Eswatini'],

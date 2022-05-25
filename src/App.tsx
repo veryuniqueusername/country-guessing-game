@@ -18,7 +18,6 @@ export function getCode(name: string): Code | undefined {
 }
 
 export function getName(country: Code) {
-	console.log(lczList[country][0]);
 	return lczList[country][0];
 }
 
