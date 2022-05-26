@@ -1209,6 +1209,19 @@
 		"White": 2
 	},
 	{
+		"Country": "South Sudan",
+		"Continent": "Africa",
+		"Dominant Color": "LiBlue",
+		"Red": 19,
+		"Saffron": 0,
+		"Yellow": 2,
+		"Green": 26,
+		"Blue": 20,
+		"LiBlue": 0,
+		"Black": 26,
+		"White": 7
+	},
+	{
 		"Country": "South Korea",
 		"Continent": "Asia",
 		"Dominant Color": "Red",

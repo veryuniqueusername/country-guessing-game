@@ -2,7 +2,17 @@ import { Code } from './codeType';
 import json from './colors.json';
 import { getCode } from './App';
 
-export const clrList: { [K in Code]: string[] } = {
+type Color =
+	| 'red'
+	| 'green'
+	| 'blue'
+	| 'yellow'
+	| 'saffron'
+	| 'liblue'
+	| 'white'
+	| 'black';
+
+export const clrList: { [K in Code]: Color[] } = {
 	ad: ['red', 'blue', 'yellow', 'white', 'saffron'],
 	ae: ['green', 'black', 'red', 'white'],
 	af: ['green', 'black', 'red', 'white', 'saffron'],
@@ -166,7 +176,7 @@ export const clrList: { [K in Code]: string[] } = {
 	sn: ['green', 'red', 'yellow'],
 	so: ['liblue', 'white'],
 	sr: ['green', 'red', 'white', 'yellow'],
-	ss: ['South Sudan'],
+	ss: ['green', 'black', 'blue', 'red', 'white', 'yellow'],
 	st: ['green', 'yellow', 'red', 'black'],
 	sv: ['blue', 'white'],
 	sy: ['red', 'black', 'white', 'green'],
@@ -201,16 +211,6 @@ export const clrList: { [K in Code]: string[] } = {
 	zm: ['green', 'saffron', 'red', 'black'],
 	zw: ['yellow', 'green', 'red', 'black', 'white'],
 };
-
-type Color =
-	| 'red'
-	| 'green'
-	| 'blue'
-	| 'yellow'
-	| 'saffron'
-	| 'liblue'
-	| 'white'
-	| 'black';
 
 export function colorStuff() {
 	for (let i = 0; i < json.length; i++) {
