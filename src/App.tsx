@@ -2,24 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { Code } from './codeType';
 import { lczList } from './countryLocalization';
 import Country from './Country';
-
-export function getCode(name: string): Code | undefined {
-	if (name.toLowerCase() in lczList) {
-		return name.toLowerCase() as Code;
-	}
-	const code = Object.keys(lczList).find((key) => {
-		return lczList[key as Code].find((lcz) => {
-			if (lcz.toLowerCase() === name.toLowerCase()) {
-				return true;
-			}
-		});
-	});
-	return code !== undefined ? (code as Code) : undefined;
-}
-
-export function getName(country: Code) {
-	return lczList[country][0];
-}
+import { getCode, getName } from './getters';
 
 export default function App() {
 	const [countries, setCountries] = useState<Code[]>([
@@ -60,7 +43,7 @@ export default function App() {
 		if (popUpClasses.split(' ').includes('visible')) {
 			setTimeout(() => {
 				setPopUpClasses(popUpClasses.split(' ').pop() || '');
-			}, 4000);
+			}, 3000);
 		} else if (popUpClasses.split(' ').length == 1) {
 			setTimeout(() => {
 				setPopUpClasses('');

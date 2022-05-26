@@ -1,6 +1,6 @@
 import { Code } from './codeType';
 import sheet from './sheet.json';
-import { getCode } from './App';
+import { getCode } from './getters';
 
 export const brdList: { [K in Code]: Code[] } = {
 	ad: ['fr', 'es'],

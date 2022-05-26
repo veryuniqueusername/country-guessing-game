@@ -1,4 +1,4 @@
-import { getCode } from './App';
+import { getCode } from './getters';
 import { Code } from './codeType';
 import json from './colors.json';
 

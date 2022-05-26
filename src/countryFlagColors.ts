@@ -1,6 +1,6 @@
 import { Code } from './codeType';
 import json from './colors.json';
-import { getCode } from './App';
+import { getCode } from './getters';
 
 type Color =
 	| 'red'
