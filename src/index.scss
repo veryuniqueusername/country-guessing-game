@@ -110,11 +110,8 @@ p {
 }
 
 .score {
-	font-weight: 400;
-	& > span {
-		font-weight: 700;
-		color: #b1f0b1;
-	}
+	font-weight: 700;
+	color: #b1f0b1;
 }
 
 .popUp {
@@ -199,4 +196,8 @@ h1 {
 	padding-top: 0.5em;
 	text-align: center;
 	letter-spacing: 2px;
+}
+
+.WrongCountries > p {
+	font-size: 20px;
 }

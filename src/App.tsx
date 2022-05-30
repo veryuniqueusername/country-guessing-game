@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { Code } from './codeType';
-import { lczList } from './countryLocalization';
 import Country from './Country';
 import { getCode, getName } from './getters';
+import { generateList } from './uniList';
+
+// generateList();
 
 export default function App() {
 	const [countries, setCountries] = useState<Code[]>([
@@ -35,8 +37,8 @@ export default function App() {
 	const [popUpClasses, setPopUpClasses] = useState('');
 	const [score, setScore] = useState(200);
 	const [newScore, setNewScore] = useState(200);
-	const intervalRef = useRef(0);
-	const scoreRef = useRef(score);
+	const totalScoreIntervalRef = useRef(0);
+	const totalScoreRef = useRef(score);
 
 	// POP UP
 	useEffect(() => {
@@ -53,21 +55,21 @@ export default function App() {
 
 	// SCORE ANIMATION
 	useEffect(() => {
-		if (newScore !== scoreRef.current) {
-			intervalRef.current = window.setInterval(() => {
-				if (newScore < scoreRef.current) {
+		if (newScore !== totalScoreRef.current) {
+			totalScoreIntervalRef.current = window.setInterval(() => {
+				if (newScore < totalScoreRef.current) {
 					setScore((score) => score - 1);
-					scoreRef.current -= 1;
-				} else if (newScore > scoreRef.current) {
+					totalScoreRef.current -= 1;
+				} else if (newScore > totalScoreRef.current) {
 					setScore((score) => score + 4);
-					scoreRef.current += 4;
+					totalScoreRef.current += 4;
 				} else {
-					window.clearInterval(intervalRef.current);
+					window.clearInterval(totalScoreIntervalRef.current);
 				}
 			}, 10);
 		} else {
 			return () => {
-				window.clearInterval(intervalRef.current);
+				window.clearInterval(totalScoreIntervalRef.current);
 			};
 		}
 	}, [newScore]);
@@ -109,7 +111,8 @@ export default function App() {
 					return;
 				}
 				popUp(`${name} is correct!`, 'correct');
-				setNewScore(newScore + countryScores[index]);
+				window.clearInterval(totalScoreIntervalRef.current);
+				setNewScore((newScore) => newScore + countryScores[index]);
 				let newFoundCountries = [...foundCountries];
 				newFoundCountries[index] = true;
 				setFoundCountries(newFoundCountries);
@@ -118,10 +121,19 @@ export default function App() {
 				return;
 			} else {
 				popUp(`${name} is wrong`, 'wrong');
-				setNewScore(score - 20);
+				window.clearInterval(totalScoreIntervalRef.current);
+				setNewScore((newScore) => newScore - 20);
 				setWrongCountries([...wrongCountries, code]);
 			}
 		}
+	}
+
+	function setFound(index: number) {
+		setFoundCountries((foundCountries) => {
+			const newFoundCountries = [...foundCountries];
+			newFoundCountries[index] = true;
+			return newFoundCountries;
+		});
 	}
 
 	function popUp(text: string, type: string) {
@@ -139,27 +151,32 @@ export default function App() {
 				<Country
 					info={countryInfos[0]}
 					removeCountryScore={removeCountryScore}
+					setFound={setFound}
 				/>
 				<Country
 					info={countryInfos[1]}
 					removeCountryScore={removeCountryScore}
+					setFound={setFound}
 				/>
 				<Country
 					info={countryInfos[2]}
 					removeCountryScore={removeCountryScore}
+					setFound={setFound}
 				/>
 				<Country
 					info={countryInfos[3]}
 					removeCountryScore={removeCountryScore}
+					setFound={setFound}
 				/>
 				<Country
 					info={countryInfos[4]}
 					removeCountryScore={removeCountryScore}
+					setFound={setFound}
 				/>
 				<div className="Summary">
 					<WrongCountries list={wrongCountries} />
-					<h2 className="score">
-						Current Score: <span>{score}</span>
+					<h2>
+						Current Score: <span className="score">{score}</span>
 					</h2>
 				</div>
 			</div>

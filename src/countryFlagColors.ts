@@ -2,7 +2,7 @@ import { Code } from './codeType';
 import json from './colors.json';
 import { getCode } from './getters';
 
-type Color =
+export type Color =
 	| 'red'
 	| 'green'
 	| 'blue'

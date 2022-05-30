@@ -1,13 +1,19 @@
-import { useState } from 'preact/hooks';
-import { lczList } from './countryLocalization';
+import { useState, useEffect } from 'preact/hooks';
 import ChevronUp from 'mdi-preact/ChevronUpIcon';
 import ChevronDown from 'mdi-preact/ChevronDownIcon';
 import { Code } from './codeType';
-import { getContinent, getFlagColors, getName } from './getters';
+import {
+	getBorders,
+	getContinent,
+	getFlagColors,
+	getName,
+	getCode,
+} from './getters';
 
 export default function Country({
 	info,
 	removeCountryScore,
+	setFound,
 }: {
 	info: {
 		readonly index: number;
@@ -16,14 +22,14 @@ export default function Country({
 		score: number;
 	};
 	removeCountryScore: (index: number, score: number) => void;
+	setFound: (index: number) => void;
 }) {
 	const [expanded, setExpanded] = useState(false);
-	const [done, setDone] = useState(false);
-	const [revealedHints, setRevealedHints] = useState({
+	const [revealedHints, setRevealedHints] = useState<{ [K: string]: boolean }>({
 		continent: false,
 		borders: false,
 		flagColorNumber: false,
-		flagColors: 0,
+		flagColors: false,
 		coastal: false,
 	});
 
@@ -43,13 +49,13 @@ export default function Country({
 			continent: true,
 			borders: true,
 			flagColorNumber: true,
-			flagColors: getFlagColors(info.code).length,
+			flagColors: false,
 			coastal: true,
 		});
 	}
 
 	function giveUp() {
-		setDone(true);
+		setFound(info.index);
 	}
 
 	return (
@@ -68,10 +74,10 @@ export default function Country({
 				<p className="countryName">{info.found ? name : '???'}</p>
 				<p
 					style={{
-						color: '#b1f0b1',
 						alignSelf: 'flex-end',
 						marginLeft: 'auto',
 					}}
+					className="score"
 				>
 					{info.score}
 				</p>
@@ -81,10 +87,19 @@ export default function Country({
 					info={getContinent(info.code)}
 					cost={50}
 					removeScore={removeScore}
-					reveal={() => setRevealedHints({ ...revealedHints, continent: true })}
-					revealed={revealedHints.continent}
+					value="continent"
+					revealedHintsState={[revealedHints, setRevealedHints]}
 				>
 					Continent
+				</Reveal>
+				<Reveal
+					info={getBorders(info.code).length}
+					cost={50}
+					removeScore={removeScore}
+					value="borders"
+					revealedHintsState={[revealedHints, setRevealedHints]}
+				>
+					Borders
 				</Reveal>
 				<RevealAll score={info.score} revealAll={revealAll} giveUp={giveUp} />
 			</div>
@@ -96,26 +111,29 @@ function Reveal({
 	info,
 	cost,
 	removeScore,
+	value,
+	revealedHintsState: [revealedHints, setRevealedHints],
 	children,
-	reveal,
-	revealed,
 }: {
-	info: string;
+	info: any;
 	cost: number;
 	removeScore: (score: number) => void;
+	value: string;
+	revealedHintsState: [
+		{ [K: string]: boolean },
+		(value: { [K: string]: boolean }) => void
+	];
 	children: string;
-	reveal: () => void;
-	revealed: boolean;
 }) {
 	function localReveal() {
-		reveal();
+		setRevealedHints({ ...revealedHints, [value]: true });
 		removeScore(cost);
 	}
 
 	return (
 		<div className="Reveal">
 			<p className="infoDesc">{children}</p>
-			{revealed ? (
+			{revealedHints[value] ? (
 				<p>{info}</p>
 			) : (
 				<button onClick={localReveal} className="revealButton">
