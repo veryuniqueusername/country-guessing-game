@@ -4,6 +4,7 @@ import { brdList } from './countryBorders';
 import { cstList } from './countryCoastal';
 import { conList } from './countryContinents';
 import { clrList } from './countryFlagColors';
+import { govList } from './countryGovernments';
 
 export function getCode(name: string): Code | undefined {
 	if (name.toLowerCase() in lczList) {
@@ -37,4 +38,8 @@ export function getContinent(country: Code) {
 
 export function getFlagColors(country: Code) {
 	return clrList[country];
+}
+
+export function getGovernment(country: Code) {
+	return govList[country];
 }

@@ -1,8 +1,15 @@
 import { Code } from './codeType';
 import { Continent } from './countryContinents';
 import { Color } from './countryFlagColors';
+import { Goverment } from './countryGovernments';
 import { lczList } from './countryLocalization';
-import { getBorders, getCoastal, getContinent, getFlagColors } from './getters';
+import {
+	getBorders,
+	getCoastal,
+	getContinent,
+	getFlagColors,
+	getGovernment,
+} from './getters';
 
 export type Country = {
 	name: string[];
@@ -12,6 +19,7 @@ export type Country = {
 	continent: Continent;
 	flagColors: Color[];
 	flagColorCount: number;
+	government: Goverment;
 };
 
 export function generateList() {
@@ -26,6 +34,7 @@ export function generateList() {
 			continent: getContinent(code),
 			flagColors: getFlagColors(code),
 			flagColorCount: getFlagColors(code).length,
+			government: getGovernment(code),
 		};
 	}
 	console.log(list);
@@ -40,6 +49,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'yellow', 'white', 'saffron'],
 		flagColorCount: 5,
+		government: 'Constitutional monarchy',
 	},
 	ae: {
 		name: ['United Arab Emirates', 'UAE'],
@@ -49,6 +59,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'black', 'red', 'white'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	af: {
 		name: ['Afghanistan'],
@@ -58,6 +69,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'black', 'red', 'white', 'saffron'],
 		flagColorCount: 5,
+		government: 'Provisional',
 	},
 	ag: {
 		name: ['Antigua and Barbuda'],
@@ -67,6 +79,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'black', 'liblue', 'white', 'yellow'],
 		flagColorCount: 5,
+		government: 'Constitutional monarchy',
 	},
 	al: {
 		name: ['Albania'],
@@ -76,6 +89,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'black'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	am: {
 		name: ['Armenia'],
@@ -85,6 +99,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'saffron', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ao: {
 		name: ['Angola'],
@@ -94,6 +109,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'black', 'yellow'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ar: {
 		name: ['Argentina'],
@@ -103,6 +119,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['liblue', 'white', 'saffron'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	at: {
 		name: ['Austria'],
@@ -112,6 +129,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	au: {
 		name: ['Australia'],
@@ -121,6 +139,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['blue', 'white', 'red'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	az: {
 		name: ['Azerbaijan'],
@@ -130,6 +149,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'liblue', 'red', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ba: {
 		name: ['Bosnia and Herzegovina'],
@@ -139,6 +159,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['blue', 'yellow', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	bb: {
 		name: ['Barbados'],
@@ -148,6 +169,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['blue', 'yellow', 'black'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	bd: {
 		name: ['Bangladesh'],
@@ -157,6 +179,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'red'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	be: {
 		name: ['Belgium'],
@@ -166,6 +189,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'yellow', 'black'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	bf: {
 		name: ['Burkina Faso'],
@@ -175,6 +199,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'yellow'],
 		flagColorCount: 3,
+		government: 'Provisional',
 	},
 	bg: {
 		name: ['Bulgaria'],
@@ -184,6 +209,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	bh: {
 		name: ['Bahrain'],
@@ -193,6 +219,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	bi: {
 		name: ['Burundi'],
@@ -202,6 +229,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'white', 'red'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	bj: {
 		name: ['Benin'],
@@ -211,6 +239,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'red', 'yellow'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	bn: {
 		name: ['Brunei', 'Brunei Darussalam'],
@@ -220,6 +249,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['yellow', 'white', 'black', 'red'],
 		flagColorCount: 4,
+		government: 'Absolute monarchy',
 	},
 	bo: {
 		name: ['Bolivia', 'Bolivia (Plurinational State of)'],
@@ -229,6 +259,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['red', 'yellow', 'green'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	br: {
 		name: ['Brazil'],
@@ -238,15 +269,17 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['green', 'yellow', 'blue', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	bs: {
-		name: ['Bahamas'],
+		name: ['Bahamas', 'The Bahamas', 'Bahamas, The'],
 		borders: [],
 		borderCount: 0,
 		coastal: false,
 		continent: 'North America',
 		flagColors: ['liblue', 'yellow', 'black'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	bt: {
 		name: ['Bhutan'],
@@ -256,6 +289,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['yellow', 'red', 'white', 'saffron'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	bw: {
 		name: ['Botswana'],
@@ -265,6 +299,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['liblue', 'black', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	by: {
 		name: ['Belarus'],
@@ -274,6 +309,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	bz: {
 		name: ['Belize'],
@@ -283,6 +319,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['blue', 'white', 'red', 'green', 'black'],
 		flagColorCount: 5,
+		government: 'Constitutional monarchy',
 	},
 	ca: {
 		name: ['Canada'],
@@ -292,6 +329,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	cd: {
 		name: [
@@ -307,6 +345,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['liblue', 'red', 'yellow'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cf: {
 		name: ['Central African Republic', 'CAR', 'Central African Rep'],
@@ -316,15 +355,23 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'white', 'blue', 'red'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	cg: {
-		name: ['Congo', 'Congo Brazzaville', 'Republic of the Congo'],
+		name: [
+			'Congo',
+			'Congo Brazzaville',
+			'Republic of the Congo',
+			'Republic of Congo',
+			'Congo, Republic of the',
+		],
 		borders: ['ao', 'cm', 'cf', 'cd', 'ga'],
 		borderCount: 5,
 		coastal: false,
 		continent: 'Africa',
 		flagColors: ['red', 'yellow', 'green'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ch: {
 		name: ['Switzerland'],
@@ -334,6 +381,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ci: {
 		name: ["Côte d'Ivoire", 'Ivory Coast', 'Cote d Ivoire'],
@@ -343,6 +391,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['saffron', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cl: {
 		name: ['Chile'],
@@ -352,6 +401,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['red', 'white', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cm: {
 		name: ['Cameroon'],
@@ -361,9 +411,15 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'red'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cn: {
-		name: ['China', "People's Republic of China", 'PRC'],
+		name: [
+			'China',
+			"People's Republic of China",
+			'PRC',
+			"China, People's Republic of",
+		],
 		borders: [
 			'af',
 			'bt',
@@ -385,6 +441,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	co: {
 		name: ['Colombia'],
@@ -394,6 +451,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['yellow', 'red', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cr: {
 		name: ['Costa Rica'],
@@ -403,6 +461,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cu: {
 		name: ['Cuba'],
@@ -412,6 +471,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['blue', 'white', 'red'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cv: {
 		name: ['Cabo Verde', 'Cape Verde'],
@@ -421,6 +481,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['blue', 'white', 'red', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	cy: {
 		name: ['Cyprus'],
@@ -430,6 +491,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'saffron', 'green'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	cz: {
 		name: ['Czechia', 'Czech Republic', 'Czech Rep'],
@@ -439,6 +501,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	de: {
 		name: ['Germany'],
@@ -448,6 +511,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'yellow', 'black'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	dj: {
 		name: ['Djibouti'],
@@ -457,6 +521,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'liblue', 'white', 'saffron'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	dk: {
 		name: ['Denmark'],
@@ -466,6 +531,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	dm: {
 		name: ['Dominica'],
@@ -475,6 +541,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['green', 'red', 'yellow', 'black', 'white'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	do: {
 		name: ['Dominican Republic', 'Dominican Rep', 'Dominican'],
@@ -484,6 +551,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'blue', 'white', 'green'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	dz: {
 		name: ['Algeria'],
@@ -493,6 +561,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['white', 'green', 'red'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ec: {
 		name: ['Ecuador'],
@@ -502,6 +571,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['yellow', 'red', 'blue', 'saffron', 'green', 'black'],
 		flagColorCount: 6,
+		government: 'Republic',
 	},
 	ee: {
 		name: ['Estonia'],
@@ -511,6 +581,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['liblue', 'black', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	eg: {
 		name: ['Egypt'],
@@ -520,6 +591,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'black', 'white', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	er: {
 		name: ['Eritrea'],
@@ -529,6 +601,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'liblue', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	es: {
 		name: ['Spain'],
@@ -538,6 +611,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'yellow', 'saffron', 'white'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	et: {
 		name: ['Ethiopia'],
@@ -547,6 +621,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'yellow', 'liblue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	fi: {
 		name: ['Finland'],
@@ -556,6 +631,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['white', 'blue'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	fj: {
 		name: ['Fiji'],
@@ -565,6 +641,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['liblue', 'red', 'white', 'blue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	fm: {
 		name: [
@@ -578,6 +655,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['liblue', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	fr: {
 		name: ['France'],
@@ -587,6 +665,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ga: {
 		name: ['Gabon'],
@@ -596,6 +675,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'liblue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	gb: {
 		name: [
@@ -609,6 +689,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white', 'blue'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	gd: {
 		name: ['Grenada'],
@@ -618,6 +699,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'yellow', 'green'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	ge: {
 		name: ['Georgia'],
@@ -627,6 +709,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'red'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	gh: {
 		name: ['Ghana'],
@@ -636,15 +719,17 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'yellow', 'black'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	gm: {
-		name: ['Gambia'],
+		name: ['Gambia', 'Gambia, The'],
 		borders: ['sn'],
 		borderCount: 1,
 		coastal: false,
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'blue', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	gn: {
 		name: ['Guinea'],
@@ -654,6 +739,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'yellow', 'green'],
 		flagColorCount: 3,
+		government: 'Provisional',
 	},
 	gq: {
 		name: ['Equatorial Guinea'],
@@ -663,6 +749,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'white', 'liblue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	gr: {
 		name: ['Greece'],
@@ -672,6 +759,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['blue', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	gt: {
 		name: ['Guatemala'],
@@ -681,6 +769,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['liblue', 'white', 'saffron', 'green'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	gw: {
 		name: ['Guinea-Bissau'],
@@ -690,6 +779,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'red', 'black'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	gy: {
 		name: ['Guyana'],
@@ -699,6 +789,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['green', 'red', 'yellow', 'white', 'black'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	hn: {
 		name: ['Honduras'],
@@ -708,6 +799,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['liblue', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	hr: {
 		name: ['Croatia'],
@@ -717,6 +809,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'white', 'liblue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ht: {
 		name: ['Haiti'],
@@ -726,6 +819,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['blue', 'red', 'white', 'green'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	hu: {
 		name: ['Hungary'],
@@ -735,6 +829,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	id: {
 		name: ['Indonesia'],
@@ -744,6 +839,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ie: {
 		name: ['Ireland'],
@@ -753,6 +849,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['saffron', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	il: {
 		name: ['Israel'],
@@ -762,6 +859,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'liblue'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	in: {
 		name: ['India'],
@@ -771,6 +869,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['saffron', 'green', 'white', 'blue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	iq: {
 		name: ['Iraq'],
@@ -780,6 +879,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'black', 'red', 'green'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ir: {
 		name: ['Iran', 'Islamic Republic of Iran', 'Iran (Islamic Republic of)'],
@@ -789,6 +889,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'red', 'green'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	is: {
 		name: ['Iceland'],
@@ -798,6 +899,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['blue', 'red', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	it: {
 		name: ['Italy'],
@@ -807,6 +909,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	jm: {
 		name: ['Jamaica'],
@@ -816,6 +919,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['yellow', 'green', 'black'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	jo: {
 		name: ['Jordan'],
@@ -825,6 +929,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'black', 'red', 'white'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	jp: {
 		name: ['Japan'],
@@ -834,6 +939,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'red'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	ke: {
 		name: ['Kenya'],
@@ -843,6 +949,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'black', 'green', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	kg: {
 		name: ['Kyrgyzstan'],
@@ -852,6 +959,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	kh: {
 		name: ['Cambodia'],
@@ -861,6 +969,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['blue', 'red', 'white', 'black'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	ki: {
 		name: ['Kiribati'],
@@ -870,6 +979,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['red', 'blue', 'white', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	km: {
 		name: ['Comoros'],
@@ -879,6 +989,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'liblue', 'white', 'red'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	kn: {
 		name: [
@@ -893,6 +1004,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['black', 'red', 'green', 'yellow', 'white'],
 		flagColorCount: 5,
+		government: 'Constitutional monarchy',
 	},
 	kp: {
 		name: [
@@ -907,6 +1019,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'black', 'red', 'blue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	kr: {
 		name: ['South Korea', 'Korea, Republic of'],
@@ -916,6 +1029,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	kw: {
 		name: ['Kuwait'],
@@ -925,6 +1039,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'green', 'white', 'black'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	kz: {
 		name: ['Kazakhstan'],
@@ -934,6 +1049,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['liblue', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	la: {
 		name: [
@@ -947,6 +1063,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	lb: {
 		name: ['Lebanon'],
@@ -956,6 +1073,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['saffron', 'white', 'green'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	lc: {
 		name: ['Saint Lucia', 'St Lucia'],
@@ -965,6 +1083,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['blue', 'yellow', 'black', 'white'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	li: {
 		name: ['Liechtenstein'],
@@ -974,6 +1093,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'yellow', 'black'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	lk: {
 		name: ['Sri Lanka'],
@@ -983,6 +1103,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['yellow', 'red', 'saffron', 'green'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	lr: {
 		name: ['Liberia'],
@@ -992,6 +1113,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'white', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ls: {
 		name: ['Lesotho'],
@@ -1001,6 +1123,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['white', 'green', 'blue', 'black'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	lt: {
 		name: ['Lithuania'],
@@ -1010,6 +1133,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'yellow', 'green'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	lu: {
 		name: ['Luxembourg', 'Luxemburg'],
@@ -1019,6 +1143,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'liblue', 'white'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	lv: {
 		name: ['Latvia'],
@@ -1028,6 +1153,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ly: {
 		name: ['Libya'],
@@ -1037,6 +1163,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['black', 'red', 'green', 'white'],
 		flagColorCount: 4,
+		government: 'Provisional',
 	},
 	ma: {
 		name: ['Morocco'],
@@ -1046,6 +1173,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	mc: {
 		name: ['Monaco'],
@@ -1055,6 +1183,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	md: {
 		name: ['Moldova', 'Moldova, Republic of'],
@@ -1064,6 +1193,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'yellow', 'black'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	me: {
 		name: ['Montenegro'],
@@ -1073,6 +1203,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'saffron', 'green', 'liblue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	mg: {
 		name: ['Madagascar'],
@@ -1082,6 +1213,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	mh: {
 		name: ['Marshall Islands'],
@@ -1091,6 +1223,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['blue', 'white', 'saffron'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	mk: {
 		name: ['North Macedonia', 'Macedonia'],
@@ -1100,6 +1233,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ml: {
 		name: ['Mali'],
@@ -1109,6 +1243,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'yellow', 'green'],
 		flagColorCount: 3,
+		government: 'Provisional',
 	},
 	mm: {
 		name: ['Myanmar', 'Burma'],
@@ -1118,6 +1253,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Provisional',
 	},
 	mn: {
 		name: ['Mongolia'],
@@ -1127,6 +1263,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'liblue', 'yellow'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	mr: {
 		name: ['Mauritania'],
@@ -1136,6 +1273,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	mt: {
 		name: ['Malta'],
@@ -1145,6 +1283,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	mu: {
 		name: ['Mauritius'],
@@ -1154,6 +1293,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'yellow', 'blue'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	mv: {
 		name: ['Maldives'],
@@ -1163,6 +1303,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	mw: {
 		name: ['Malawi'],
@@ -1172,6 +1313,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'green', 'black'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	mx: {
 		name: ['Mexico'],
@@ -1181,6 +1323,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'green', 'white', 'saffron'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	my: {
 		name: ['Malaysia'],
@@ -1190,6 +1333,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'red', 'blue', 'yellow'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	mz: {
 		name: ['Mozambique'],
@@ -1199,6 +1343,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'black', 'red', 'white'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	na: {
 		name: ['Namibia'],
@@ -1208,6 +1353,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'blue', 'red', 'white', 'yellow'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	ne: {
 		name: ['Niger'],
@@ -1217,6 +1363,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['saffron', 'green', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ng: {
 		name: ['Nigeria'],
@@ -1226,6 +1373,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ni: {
 		name: ['Nicaragua'],
@@ -1235,6 +1383,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['liblue', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	nl: {
 		name: ['Netherlands'],
@@ -1244,6 +1393,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	no: {
 		name: ['Norway'],
@@ -1253,6 +1403,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	np: {
 		name: ['Nepal'],
@@ -1262,6 +1413,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	nr: {
 		name: ['Nauru'],
@@ -1271,6 +1423,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['blue', 'yellow', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	nz: {
 		name: ['New Zealand'],
@@ -1280,6 +1433,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['blue', 'red', 'white'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	om: {
 		name: ['Oman'],
@@ -1289,6 +1443,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['saffron', 'white', 'green'],
 		flagColorCount: 3,
+		government: 'Absolute monarchy',
 	},
 	pa: {
 		name: ['Panama'],
@@ -1298,6 +1453,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['white', 'red', 'liblue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	pe: {
 		name: ['Peru'],
@@ -1307,6 +1463,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	pg: {
 		name: ['Papua New Guinea'],
@@ -1316,6 +1473,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['black', 'red', 'yellow', 'white'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	ph: {
 		name: ['Philippines'],
@@ -1325,6 +1483,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	pk: {
 		name: ['Pakistan'],
@@ -1334,6 +1493,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	pl: {
 		name: ['Poland'],
@@ -1343,6 +1503,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ps: {
 		name: ['Palestine', 'Palestine, State of'],
@@ -1352,6 +1513,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'black', 'white', 'red'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	pt: {
 		name: ['Portugal'],
@@ -1361,6 +1523,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'green', 'yellow', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	pw: {
 		name: ['Palau'],
@@ -1370,6 +1533,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['liblue', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	py: {
 		name: ['Paraguay'],
@@ -1379,6 +1543,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	qa: {
 		name: ['Qatar'],
@@ -1388,6 +1553,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	ro: {
 		name: ['Romania'],
@@ -1397,6 +1563,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'yellow', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	rs: {
 		name: ['Serbia'],
@@ -1406,6 +1573,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white', 'blue', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ru: {
 		name: ['Russia', 'Russian Federation'],
@@ -1430,6 +1598,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	rw: {
 		name: ['Rwanda'],
@@ -1439,6 +1608,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['liblue', 'yellow', 'green', 'saffron'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	sa: {
 		name: ['Saudi Arabia'],
@@ -1448,6 +1618,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'white'],
 		flagColorCount: 2,
+		government: 'Absolute monarchy',
 	},
 	sb: {
 		name: ['Solomon Islands'],
@@ -1457,6 +1628,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['green', 'liblue', 'yellow', 'white'],
 		flagColorCount: 4,
+		government: 'Constitutional monarchy',
 	},
 	sc: {
 		name: ['Seychelles'],
@@ -1466,6 +1638,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'yellow', 'green', 'blue', 'white'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 	sd: {
 		name: ['Sudan'],
@@ -1475,6 +1648,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'black', 'white', 'green'],
 		flagColorCount: 4,
+		government: 'Provisional',
 	},
 	se: {
 		name: ['Sweden'],
@@ -1484,6 +1658,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['blue', 'yellow'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	sg: {
 		name: ['Singapore'],
@@ -1493,6 +1668,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'red'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	si: {
 		name: ['Slovenia'],
@@ -1502,6 +1678,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'liblue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	sk: {
 		name: ['Slovakia'],
@@ -1511,6 +1688,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['red', 'white', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	sl: {
 		name: ['Sierra Leone'],
@@ -1520,6 +1698,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'liblue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	sm: {
 		name: ['San Marino'],
@@ -1529,6 +1708,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['white', 'liblue', 'green', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	sn: {
 		name: ['Senegal'],
@@ -1538,6 +1718,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'red', 'yellow'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	so: {
 		name: ['Somalia'],
@@ -1547,6 +1728,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['liblue', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	sr: {
 		name: ['Suriname'],
@@ -1556,6 +1738,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['green', 'red', 'white', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ss: {
 		name: ['South Sudan'],
@@ -1565,6 +1748,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'black', 'blue', 'red', 'white', 'yellow'],
 		flagColorCount: 6,
+		government: 'Republic',
 	},
 	st: {
 		name: ['São Tomé and Príncipe', 'Sao Tome and Principe', 'Sao Tome'],
@@ -1574,6 +1758,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'yellow', 'red', 'black'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	sv: {
 		name: ['El Salvador'],
@@ -1583,6 +1768,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['blue', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	sy: {
 		name: ['Syria', 'Syrian Arab Republic', 'Syrian Arab Rep', 'Syrian Arab'],
@@ -1592,6 +1778,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'black', 'white', 'green'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	sz: {
 		name: ['Eswatini', 'Swaziland'],
@@ -1601,6 +1788,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['liblue', 'red', 'yellow', 'black', 'white', 'saffron'],
 		flagColorCount: 6,
+		government: 'Absolute monarchy',
 	},
 	td: {
 		name: ['Chad'],
@@ -1610,6 +1798,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'yellow', 'blue'],
 		flagColorCount: 3,
+		government: 'Provisional',
 	},
 	tg: {
 		name: ['Togo'],
@@ -1619,6 +1808,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'yellow', 'red', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	th: {
 		name: ['Thailand'],
@@ -1628,6 +1818,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	tj: {
 		name: ['Tajikistan'],
@@ -1637,6 +1828,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'red', 'green', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	tl: {
 		name: ['Timor-Leste', 'East Timor'],
@@ -1646,6 +1838,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'black', 'yellow', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	tm: {
 		name: ['Turkmenistan'],
@@ -1655,6 +1848,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['green', 'red', 'saffron', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	tn: {
 		name: ['Tunisia'],
@@ -1664,6 +1858,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	to: {
 		name: ['Tonga'],
@@ -1673,6 +1868,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Constitutional monarchy',
 	},
 	tr: {
 		name: ['Turkey'],
@@ -1682,6 +1878,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'white'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	tt: {
 		name: ['Trinidad and Tobago'],
@@ -1691,6 +1888,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'black', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	tv: {
 		name: ['Tuvalu'],
@@ -1700,15 +1898,17 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['liblue', 'red', 'white', 'blue', 'yellow'],
 		flagColorCount: 5,
+		government: 'Constitutional monarchy',
 	},
 	tw: {
-		name: ['Taiwan', 'Taiwan, Province of China'],
+		name: ['Taiwan', 'Taiwan, Province of China', 'Taiwan (Republic of China)'],
 		borders: [],
 		borderCount: 0,
 		coastal: false,
 		continent: 'Asia',
 		flagColors: ['red', 'blue', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	tz: {
 		name: ['Tanzania', 'Tanzania, United Republic of'],
@@ -1718,6 +1918,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'liblue', 'black', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ua: {
 		name: ['Ukraine'],
@@ -1727,6 +1928,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['yellow', 'liblue'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	ug: {
 		name: ['Uganda'],
@@ -1736,6 +1938,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'red', 'black', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	us: {
 		name: ['United States of America', 'United States', 'USA'],
@@ -1745,6 +1948,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['red', 'white', 'blue'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	uy: {
 		name: ['Uruguay'],
@@ -1754,6 +1958,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['white', 'blue', 'yellow', 'black'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	uz: {
 		name: ['Uzbekistan'],
@@ -1763,6 +1968,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['white', 'green', 'liblue', 'red'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	va: {
 		name: ['Vatican', 'Holy See', 'Vatican City'],
@@ -1772,6 +1978,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['yellow', 'white', 'saffron'],
 		flagColorCount: 3,
+		government: 'Absolute monarchy',
 	},
 	vc: {
 		name: [
@@ -1786,6 +1993,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'North America',
 		flagColors: ['yellow', 'green', 'liblue'],
 		flagColorCount: 3,
+		government: 'Constitutional monarchy',
 	},
 	ve: {
 		name: ['Venezuela', 'Venezuela (Bolivarian Republic of)'],
@@ -1795,6 +2003,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'South America',
 		flagColors: ['red', 'yellow', 'blue', 'white'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	vn: {
 		name: ['Vietnam', 'Viet Nam'],
@@ -1804,6 +2013,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'yellow'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	vu: {
 		name: ['Vanuatu'],
@@ -1813,6 +2023,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['red', 'green', 'black', 'yellow'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	ws: {
 		name: ['Samoa'],
@@ -1822,6 +2033,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Oceania',
 		flagColors: ['red', 'blue'],
 		flagColorCount: 2,
+		government: 'Republic',
 	},
 	xk: {
 		name: ['Kosovo'],
@@ -1831,6 +2043,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Europe',
 		flagColors: ['blue', 'yellow', 'white'],
 		flagColorCount: 3,
+		government: 'Republic',
 	},
 	ye: {
 		name: ['Yemen'],
@@ -1840,6 +2053,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Asia',
 		flagColors: ['red', 'black', 'white'],
 		flagColorCount: 3,
+		government: 'Provisional',
 	},
 	za: {
 		name: ['South Africa'],
@@ -1849,6 +2063,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'red', 'blue', 'white', 'black', 'yellow'],
 		flagColorCount: 6,
+		government: 'Republic',
 	},
 	zm: {
 		name: ['Zambia'],
@@ -1858,6 +2073,7 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['green', 'saffron', 'red', 'black'],
 		flagColorCount: 4,
+		government: 'Republic',
 	},
 	zw: {
 		name: ['Zimbabwe'],
@@ -1867,5 +2083,6 @@ export const uniList: { [K in Code]: Country } = {
 		continent: 'Africa',
 		flagColors: ['yellow', 'green', 'red', 'black', 'white'],
 		flagColorCount: 5,
+		government: 'Republic',
 	},
 };
