@@ -24,6 +24,10 @@ export function getName(country: Code) {
 	return lczList[country][0];
 }
 
+export function getCapital(country: Code) {
+	return capList[country];
+}
+
 export function getBorders(country: Code) {
 	return brdList[country];
 }
@@ -42,4 +46,24 @@ export function getFlagColors(country: Code) {
 
 export function getGovernment(country: Code) {
 	return govList[country];
+}
+
+export function getHeadOfState(country: Code) {
+	return hosList[country];
+}
+
+export function getArea(country: Code) {
+	return areList[country];
+}
+
+export function getAreaRanking(country: Code) {
+	return arerList[country];
+}
+
+export function getPopulation(country: Code) {
+	return popList[country];
+}
+
+export function getPopulationRanking(country: Code) {
+	return poprList[country];
 }

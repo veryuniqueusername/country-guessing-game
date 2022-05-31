@@ -2,13 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 import ChevronUp from 'mdi-preact/ChevronUpIcon';
 import ChevronDown from 'mdi-preact/ChevronDownIcon';
 import { Code } from './codeType';
-import {
-	getBorders,
-	getContinent,
-	getFlagColors,
-	getName,
-	getCode,
-} from './getters';
+import { CountryType, uniList } from './countryUniversal';
 
 export default function Country({
 	info,
@@ -25,15 +19,20 @@ export default function Country({
 	setFound: (index: number) => void;
 }) {
 	const [expanded, setExpanded] = useState(false);
-	const [revealedHints, setRevealedHints] = useState<{ [K: string]: boolean }>({
-		continent: false,
+	const [revealedHints, setRevealedHints] = useState<{
+		[K: string]: boolean;
+	}>({
+		name: false,
 		borders: false,
-		flagColorNumber: false,
-		flagColors: false,
+		borderCount: false,
 		coastal: false,
+		continent: false,
+		flagColors: false,
+		flagColorCount: false,
+		government: false,
 	});
 
-	const name = getName(info.code);
+	const name = uniList[info.code].name[0];
 
 	function expand() {
 		setExpanded(!expanded);
@@ -56,6 +55,34 @@ export default function Country({
 
 	function giveUp() {
 		setFound(info.index);
+	}
+
+	function Reveal({
+		value,
+		cost,
+		children,
+	}: {
+		value: keyof CountryType;
+		cost: number;
+		children: string;
+	}) {
+		function localReveal() {
+			setRevealedHints({ ...revealedHints, [value]: true });
+			removeScore(cost);
+		}
+
+		return (
+			<div className="Reveal">
+				<p className="infoDesc">{children}</p>
+				{revealedHints[value] ? (
+					<p>{uniList[info.code][value]}</p>
+				) : (
+					<button onClick={localReveal} className="revealButton">
+						Reveal <span className="cost">-{cost}</span>
+					</button>
+				)}
+			</div>
+		);
 	}
 
 	return (
@@ -83,63 +110,27 @@ export default function Country({
 				</p>
 			</div>
 			<div className="Hints">
-				<Reveal
-					info={getContinent(info.code)}
-					cost={50}
-					removeScore={removeScore}
-					value="continent"
-					revealedHintsState={[revealedHints, setRevealedHints]}
-				>
-					Continent
-				</Reveal>
-				<Reveal
-					info={getBorders(info.code).length}
-					cost={50}
-					removeScore={removeScore}
-					value="borders"
-					revealedHintsState={[revealedHints, setRevealedHints]}
-				>
-					Borders
-				</Reveal>
-				<RevealAll score={info.score} revealAll={revealAll} giveUp={giveUp} />
+				<div className="HintRow">
+					<Reveal value="continent" cost={40}>
+						Continent
+					</Reveal>
+					<Reveal value="government" cost={40}>
+						Government
+					</Reveal>
+					<RevealAll score={info.score} revealAll={revealAll} giveUp={giveUp} />
+				</div>
+				<div className="HintRow">
+					<Reveal value="coastal" cost={50}>
+						Coastal
+					</Reveal>
+					<Reveal value="borderCount" cost={70}>
+						Border count
+					</Reveal>
+					<Reveal value="borders" cost={200}>
+						Bordering countries
+					</Reveal>
+				</div>
 			</div>
-		</div>
-	);
-}
-
-function Reveal({
-	info,
-	cost,
-	removeScore,
-	value,
-	revealedHintsState: [revealedHints, setRevealedHints],
-	children,
-}: {
-	info: any;
-	cost: number;
-	removeScore: (score: number) => void;
-	value: string;
-	revealedHintsState: [
-		{ [K: string]: boolean },
-		(value: { [K: string]: boolean }) => void
-	];
-	children: string;
-}) {
-	function localReveal() {
-		setRevealedHints({ ...revealedHints, [value]: true });
-		removeScore(cost);
-	}
-
-	return (
-		<div className="Reveal">
-			<p className="infoDesc">{children}</p>
-			{revealedHints[value] ? (
-				<p>{info}</p>
-			) : (
-				<button onClick={localReveal} className="revealButton">
-					Reveal <span className="cost">-{cost}</span>
-				</button>
-			)}
 		</div>
 	);
 }

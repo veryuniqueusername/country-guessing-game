@@ -4,15 +4,22 @@ import { Color } from './countryFlagColors';
 import { Goverment } from './countryGovernments';
 import { lczList } from './countryLocalization';
 import {
+	getCapital,
 	getBorders,
 	getCoastal,
 	getContinent,
 	getFlagColors,
 	getGovernment,
+	getHeadOfState,
+	getArea,
+	getAreaRanking,
+	getPopulation,
+	getPopulationRanking,
 } from './getters';
 
-export type Country = {
+export type CountryType = {
 	name: string[];
+	capital: string;
 	borders: Code[];
 	borderCount: number;
 	coastal: boolean;
@@ -20,6 +27,11 @@ export type Country = {
 	flagColors: Color[];
 	flagColorCount: number;
 	government: Goverment;
+	headOfState: string;
+	area: number;
+	areaRanking: number;
+	population: number;
+	populationRanking: number;
 };
 
 export function generateList() {
@@ -28,6 +40,7 @@ export function generateList() {
 		const code = cd as Code;
 		list[code] = {
 			name: lczList[code],
+			capital: getCapital(code),
 			borders: getBorders(code),
 			borderCount: getBorders(code).length,
 			coastal: getCoastal(code),
@@ -35,12 +48,17 @@ export function generateList() {
 			flagColors: getFlagColors(code),
 			flagColorCount: getFlagColors(code).length,
 			government: getGovernment(code),
+			headOfState: getHeadOfState(code),
+			area: getArea(code),
+			areaRanking: getAreaRanking(code),
+			population: getPopulation(code),
+			populationRanking: getPopulationRanking(code),
 		};
 	}
 	console.log(list);
 }
 
-export const uniList: { [K in Code]: Country } = {
+export const uniList: { [K in Code]: CountryType } = {
 	ad: {
 		name: ['Andorra'],
 		borders: ['fr', 'es'],

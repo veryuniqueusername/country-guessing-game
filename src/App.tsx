@@ -22,7 +22,7 @@ export default function App() {
 		false,
 	]);
 	const [countryScores, setCountryScores] = useState<number[]>([
-		250, 250, 250, 250, 250,
+		1000, 1000, 1000, 1000, 1000,
 	]);
 	const [countryInfos, setCountryInfos] = useState<
 		{ readonly index: number; code: Code; found: boolean; score: number }[]
