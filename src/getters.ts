@@ -25,7 +25,8 @@ export function getName(country: Code) {
 }
 
 export function getCapital(country: Code) {
-	return capList[country];
+	return lczList[country][0];
+	// return capList[country];
 }
 
 export function getBorders(country: Code) {
@@ -49,21 +50,26 @@ export function getGovernment(country: Code) {
 }
 
 export function getHeadOfState(country: Code) {
-	return hosList[country];
+	return lczList[country][0];
+	// return hosList[country];
 }
 
 export function getArea(country: Code) {
-	return areList[country];
+	return lczList[country][0];
+	// return areList[country];
 }
 
 export function getAreaRanking(country: Code) {
-	return arerList[country];
+	return lczList[country][0];
+	// return arerList[country];
 }
 
 export function getPopulation(country: Code) {
-	return popList[country];
+	return lczList[country][0];
+	// return popList[country];
 }
 
 export function getPopulationRanking(country: Code) {
-	return poprList[country];
+	return lczList[country][0];
+	//return poprList[country];
 }

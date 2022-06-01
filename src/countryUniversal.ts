@@ -3,6 +3,7 @@ import { Continent } from './countryContinents';
 import { Color } from './countryFlagColors';
 import { Goverment } from './countryGovernments';
 import { lczList } from './countryLocalization';
+import { Religion } from './countryReligion';
 import {
 	getCapital,
 	getBorders,
@@ -32,6 +33,7 @@ export type CountryType = {
 	areaRanking: number;
 	population: number;
 	populationRanking: number;
+	religion: Religion;
 };
 
 export function generateList() {

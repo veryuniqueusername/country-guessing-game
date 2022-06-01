@@ -36,6 +36,7 @@ export const lczList: { [K in Code]: string[] } = {
 		'Congo, Democratic Republic of the',
 		'DRC',
 		'Congo Kinshasa',
+		'DR Congo',
 	],
 	cf: ['Central African Republic', 'CAR', 'Central African Rep'],
 	cg: [

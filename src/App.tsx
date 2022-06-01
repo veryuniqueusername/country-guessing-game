@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { Code } from './codeType';
 import Country from './Country';
 import { getCode, getName } from './getters';
-import { generateList } from './countryUniversal';
-
-generateList();
 
 export default function App() {
 	const [countries, setCountries] = useState<Code[]>([

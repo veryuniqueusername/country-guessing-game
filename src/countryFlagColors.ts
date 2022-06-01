@@ -1,5 +1,4 @@
 import { Code } from './codeType';
-import json from './colors.json';
 import { getCode } from './getters';
 
 export type Color =
@@ -212,47 +211,47 @@ export const clrList: { [K in Code]: Color[] } = {
 	zw: ['yellow', 'green', 'red', 'black', 'white'],
 };
 
-export function colorStuff() {
-	for (let i = 0; i < json.length; i++) {
-		const country = json[i];
-		const countryName = country.Country;
-		const countryCode = getCode(countryName);
-		if (getCode(countryName) === undefined) {
-			console.log(countryName);
-		}
-		const colorList: Color[] = [];
-		const countryColors: { [K in Color]: number } = {
-			red: country.Red,
-			saffron: country.Saffron,
-			yellow: country.Yellow,
-			green: country.Green,
-			blue: country.Blue,
-			liblue: country.LiBlue,
-			black: country.Black,
-			white: country.White,
-		};
-		for (const color in countryColors) {
-			if (countryColors[color as Color] === 0) {
-				continue;
-			}
-			let done = false;
-			if (0 === colorList.length) {
-				colorList.push(color as Color);
-				continue;
-			}
-			for (let j = 0; j < colorList.length; j++) {
-				if (countryColors[color as Color] > countryColors[colorList[j]]) {
-					colorList.splice(j, 0, color as Color);
-					done = true;
-					break;
-				}
-			}
-			if (!done) {
-				colorList.push(color as Color);
-			}
-		}
+// export function colorStuff() {
+// 	for (let i = 0; i < json.length; i++) {
+// 		const country = json[i];
+// 		const countryName = country.Country;
+// 		const countryCode = getCode(countryName);
+// 		if (getCode(countryName) === undefined) {
+// 			console.log(countryName);
+// 		}
+// 		const colorList: Color[] = [];
+// 		const countryColors: { [K in Color]: number } = {
+// 			red: country.Red,
+// 			saffron: country.Saffron,
+// 			yellow: country.Yellow,
+// 			green: country.Green,
+// 			blue: country.Blue,
+// 			liblue: country.LiBlue,
+// 			black: country.Black,
+// 			white: country.White,
+// 		};
+// 		for (const color in countryColors) {
+// 			if (countryColors[color as Color] === 0) {
+// 				continue;
+// 			}
+// 			let done = false;
+// 			if (0 === colorList.length) {
+// 				colorList.push(color as Color);
+// 				continue;
+// 			}
+// 			for (let j = 0; j < colorList.length; j++) {
+// 				if (countryColors[color as Color] > countryColors[colorList[j]]) {
+// 					colorList.splice(j, 0, color as Color);
+// 					done = true;
+// 					break;
+// 				}
+// 			}
+// 			if (!done) {
+// 				colorList.push(color as Color);
+// 			}
+// 		}
 
-		clrList[countryCode as Code] = colorList;
-	}
-	console.log(clrList);
-}
+// 		clrList[countryCode as Code] = colorList;
+// 	}
+// 	console.log(clrList);
+// }
