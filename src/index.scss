@@ -186,9 +186,15 @@ p {
 
 .Hints {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.HintRow {
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	&: nth-child();
 }
 
 h1 {

@@ -23,6 +23,7 @@ export default function Country({
 		[K: string]: boolean;
 	}>({
 		name: false,
+		capital: false,
 		borders: false,
 		borderCount: false,
 		coastal: false,
@@ -30,6 +31,12 @@ export default function Country({
 		flagColors: false,
 		flagColorCount: false,
 		government: false,
+		headOfState: false,
+		area: false,
+		areaRanking: false,
+		population: false,
+		populationRanking: false,
+		religion: false,
 	});
 
 	const name = uniList[info.code].name[0];
@@ -45,11 +52,20 @@ export default function Country({
 	function revealAll() {
 		removeScore(info.score);
 		setRevealedHints({
-			continent: true,
+			capital: true,
 			borders: true,
-			flagColorNumber: true,
-			flagColors: false,
+			borderCount: true,
 			coastal: true,
+			continent: true,
+			flagColors: true,
+			flagColorCount: true,
+			government: true,
+			headOfState: true,
+			area: true,
+			areaRanking: true,
+			population: true,
+			populationRanking: true,
+			religion: true,
 		});
 	}
 
@@ -79,6 +95,29 @@ export default function Country({
 				) : (
 					<button onClick={localReveal} className="revealButton">
 						Reveal <span className="cost">-{cost}</span>
+					</button>
+				)}
+			</div>
+		);
+	}
+
+	function RevealAll({}: {}) {
+		const [revealed, setRevealed] = useState(info.score === 0);
+
+		function reveal() {
+			setRevealed(true);
+			revealAll();
+		}
+
+		return (
+			<div className="Reveal">
+				{revealed ? (
+					<button onClick={giveUp} className="revealButton">
+						<span className="cost">Give up?</span>
+					</button>
+				) : (
+					<button onClick={reveal} className="revealButton">
+						<span className="cost">Reveal all -{info.score}</span>
 					</button>
 				)}
 			</div>
@@ -117,7 +156,7 @@ export default function Country({
 					<Reveal value="government" cost={40}>
 						Government
 					</Reveal>
-					<RevealAll score={info.score} revealAll={revealAll} giveUp={giveUp} />
+					<RevealAll />
 				</div>
 				<div className="HintRow">
 					<Reveal value="coastal" cost={50}>
@@ -131,37 +170,6 @@ export default function Country({
 					</Reveal>
 				</div>
 			</div>
-		</div>
-	);
-}
-
-function RevealAll({
-	score,
-	revealAll,
-	giveUp,
-}: {
-	score: number;
-	revealAll: () => void;
-	giveUp: () => void;
-}) {
-	const [revealed, setRevealed] = useState(score === 0);
-
-	function reveal() {
-		setRevealed(true);
-		revealAll();
-	}
-
-	return (
-		<div className="Reveal">
-			{revealed ? (
-				<button onClick={giveUp} className="revealButton">
-					<span className="cost">Give up?</span>
-				</button>
-			) : (
-				<button onClick={reveal} className="revealButton">
-					<span className="cost">Reveal all -{score}</span>
-				</button>
-			)}
 		</div>
 	);
 }

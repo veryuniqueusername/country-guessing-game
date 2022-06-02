@@ -5,6 +5,7 @@ import { cstList } from './countryCoastal';
 import { conList } from './countryContinents';
 import { clrList } from './countryFlagColors';
 import { govList } from './countryGovernments';
+import { relList } from './countryReligion';
 
 export function getCode(name: string): Code | undefined {
 	if (name.toLowerCase() in lczList) {
@@ -72,4 +73,8 @@ export function getPopulation(country: Code) {
 export function getPopulationRanking(country: Code) {
 	return lczList[country][0];
 	//return poprList[country];
+}
+
+export function getReligion(country: Code) {
+	return relList[country];
 }

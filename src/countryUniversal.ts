@@ -16,6 +16,7 @@ import {
 	getAreaRanking,
 	getPopulation,
 	getPopulationRanking,
+	getReligion,
 } from './getters';
 
 export type CountryType = {
@@ -55,6 +56,7 @@ export function generateList() {
 			areaRanking: getAreaRanking(code),
 			population: getPopulation(code),
 			populationRanking: getPopulationRanking(code),
+			religion: getReligion(code),
 		};
 	}
 	console.log(list);

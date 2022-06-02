@@ -1,7 +1,4 @@
 import { Code } from './codeType';
-import { lczList } from './countryLocalization';
-import data from './data.json';
-import { getCode } from './getters';
 
 export type Religion =
 	| 'Irreligion'
@@ -212,29 +209,3 @@ export const relList: { [K in Code]: Religion } = {
 	mk: 'Christianity',
 	xk: 'Islam',
 };
-
-// export function generateRelList() {
-// 	const list: { [K in Code]: string } = {};
-// 	for (const country of data) {
-// 		const code = getCode(country.country);
-// 		if (code !== undefined) {
-// 			let religion: [string, number] = ['Christianity', country.chistians];
-// 			if (country.muslims > religion[1]) religion = ['Islam', country.muslims];
-// 			if (country.unaffiliated > religion[1])
-// 				religion = ['Irreligion', country.unaffiliated];
-// 			if (country.hindus > religion[1]) religion = ['Hinduism', country.hindus];
-// 			if (country.buddhists > religion[1])
-// 				religion = ['Buddhism', country.buddhists];
-// 			if (country.jews > religion[1]) religion = ['Judaism', country.jews];
-// 			if (country.other > religion[1]) religion = ['Other', country.other];
-// 			if (country.folkReligions > religion[1])
-// 				religion = ['Folk Religion', country.folkReligions];
-// 			list[code] = religion[0];
-// 			continue;
-// 		}
-// 	}
-// 	list.lc = 'Christianity';
-// 	list.mk = 'Christianity';
-// 	list.xk = 'Islam';
-// 	console.log(list);
-// }
