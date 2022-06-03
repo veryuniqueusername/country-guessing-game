@@ -1,6 +1,4 @@
 import { Code } from './codeType';
-import sheet from './sheet.json';
-import { getCode } from './getters';
 
 export const brdList: { [K in Code]: Code[] } = {
 	ad: ['fr', 'es'],
@@ -231,19 +229,3 @@ export const brdList: { [K in Code]: Code[] } = {
 	zm: ['ao', 'bw', 'cd', 'mw', 'mz', 'na', 'tz', 'zw'],
 	zw: ['bw', 'mz', 'za', 'zm'],
 };
-
-export function checkBorders() {
-	for (let i = 0; i < sheet.length; i++) {
-		if (getCode(sheet[i].x)) {
-			if (brdList[getCode(sheet[i].x) as Code].length !== sheet[i].y) {
-				console.log(
-					`Wikipedia says ${sheet[i].x} has ${
-						sheet[i].y
-					} but current value is ${brdList[getCode(sheet[i].x) as Code].length}`
-				);
-			}
-		} else {
-			console.log(`${sheet[i].x} is not a valid country`);
-		}
-	}
-}

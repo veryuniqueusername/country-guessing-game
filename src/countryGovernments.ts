@@ -1,7 +1,4 @@
 import { Code } from './codeType';
-import { lczList } from './countryLocalization';
-import json from './json.json';
-import { getCode } from './getters';
 
 export type Goverment =
 	| 'Republic'
@@ -208,17 +205,3 @@ export const govList: { [K in Code]: Goverment } = {
 	xk: 'Republic',
 	tw: 'Republic',
 };
-
-export function generateList() {
-	const govList = {} as { [K in Code]: Goverment };
-	for (const country of json) {
-		if (getCode(country.Name) === undefined) {
-			console.log(country.Name);
-			continue;
-		} else {
-			const gov = country['Constitutional form'];
-			govList[getCode(country.Name) as Code] = gov as Goverment;
-		}
-	}
-	console.log(govList);
-}

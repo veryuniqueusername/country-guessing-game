@@ -155,11 +155,6 @@ p {
 	}
 }
 
-.Reveal {
-	display: inline-flex;
-	font-size: 22px;
-}
-
 .cost {
 	color: #ad0c0c;
 	font-weight: 700;
@@ -194,7 +189,12 @@ p {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	&: nth-child();
+}
+
+.Reveal {
+	display: inline-flex;
+	font-size: 22px;
+	align-items: center;
 }
 
 h1 {

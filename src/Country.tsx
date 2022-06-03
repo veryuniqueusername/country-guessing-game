@@ -78,7 +78,7 @@ export default function Country({
 		cost,
 		children,
 	}: {
-		value: keyof CountryType;
+		value: string;
 		cost: number;
 		children: string;
 	}) {
@@ -91,7 +91,7 @@ export default function Country({
 			<div className="Reveal">
 				<p className="infoDesc">{children}</p>
 				{revealedHints[value] ? (
-					<p>{uniList[info.code][value]}</p>
+					<p>{uniList[info.code][value as keyof CountryType]}</p>
 				) : (
 					<button onClick={localReveal} className="revealButton">
 						Reveal <span className="cost">-{cost}</span>
@@ -110,7 +110,7 @@ export default function Country({
 		}
 
 		return (
-			<div className="Reveal">
+			<div className="Reveal RevealAll">
 				{revealed ? (
 					<button onClick={giveUp} className="revealButton">
 						<span className="cost">Give up?</span>
