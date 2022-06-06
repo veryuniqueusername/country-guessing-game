@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { Code } from './codeType';
 import Country from './Country';
-import { getCode, getName } from './getters';
+import { getCode, getName, Code } from './util';
 
 export default function App() {
 	const [countries, setCountries] = useState<Code[]>([
@@ -55,11 +54,11 @@ export default function App() {
 		if (newScore !== totalScoreRef.current) {
 			totalScoreIntervalRef.current = window.setInterval(() => {
 				if (newScore < totalScoreRef.current) {
-					setScore((score) => score - 1);
-					totalScoreRef.current -= 1;
+					setScore((score) => score - 5);
+					totalScoreRef.current -= 5;
 				} else if (newScore > totalScoreRef.current) {
-					setScore((score) => score + 4);
-					totalScoreRef.current += 4;
+					setScore((score) => score + 120);
+					totalScoreRef.current += 120;
 				} else {
 					window.clearInterval(totalScoreIntervalRef.current);
 				}

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import ChevronUp from 'mdi-preact/ChevronUpIcon';
 import ChevronDown from 'mdi-preact/ChevronDownIcon';
-import { Code } from './codeType';
-import { CountryType, uniList } from './countryUniversal';
+import uniList from './json/all.json';
+import { Code, CountryType } from './util';
 
 export default function Country({
 	info,
@@ -39,7 +39,7 @@ export default function Country({
 		religion: false,
 	});
 
-	const name = uniList[info.code].name[0];
+	const name = uniList[info.code].names[0];
 
 	function expand() {
 		setExpanded(!expanded);
@@ -91,7 +91,7 @@ export default function Country({
 			<div className="Reveal">
 				<p className="infoDesc">{children}</p>
 				{revealedHints[value] ? (
-					<p>{uniList[info.code][value as keyof CountryType]}</p>
+					<p>{uniList[info.code][value as keyof CountryType].toString()}</p>
 				) : (
 					<button onClick={localReveal} className="revealButton">
 						Reveal <span className="cost">-{cost}</span>
