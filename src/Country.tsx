@@ -137,8 +137,10 @@ export default function Country({
 		);
 	}
 
-	function RevealAll({}: {}) {
-		const [revealed, setRevealed] = useState(info.score === 0);
+	function RevealAll() {
+		const [revealed, setRevealed] = useState(
+			!Object.values(revealedHints).includes(false)
+		);
 
 		function reveal() {
 			setRevealed(true);
@@ -195,11 +197,11 @@ export default function Country({
 					<RevealAll />
 				</div>
 				<div className="HintRow">
-					<Reveal value="borderCount" cost={70}>
-						Border count
-					</Reveal>
-					<Reveal value="borders" cost={900}>
+					<Reveal value="borders" cost={70}>
 						Bordering countries
+					</Reveal>
+					<Reveal value="borderCount" cost={900}>
+						Border count
 					</Reveal>
 				</div>
 				<div className="HintRow">
@@ -222,6 +224,11 @@ export default function Country({
 					</Reveal>
 					<Reveal value="population" cost={100}>
 						Population
+					</Reveal>
+				</div>
+				<div className="HintRow">
+					<Reveal value="flagColors" cost={100}>
+						Flag colors
 					</Reveal>
 				</div>
 			</div>
