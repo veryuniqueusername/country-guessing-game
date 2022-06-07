@@ -1,4 +1,5 @@
 import names from './json/names.json';
+import list from './json/coastal.json';
 
 export function getName(code: Code) {
 	return names[code][0];
