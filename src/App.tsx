@@ -1,14 +1,25 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import Country from './Country';
 import { getCode, getName, Code } from './util';
+import names from './json/names.json';
 
 export default function App() {
 	const [countries, setCountries] = useState<Code[]>([
-		'se',
-		'ru',
-		'va',
-		'ir',
-		'de',
+		Object.keys(names)[
+			Math.floor(Math.random() * Object.keys(names).length)
+		] as Code,
+		Object.keys(names)[
+			Math.floor(Math.random() * Object.keys(names).length)
+		] as Code,
+		Object.keys(names)[
+			Math.floor(Math.random() * Object.keys(names).length)
+		] as Code,
+		Object.keys(names)[
+			Math.floor(Math.random() * Object.keys(names).length)
+		] as Code,
+		Object.keys(names)[
+			Math.floor(Math.random() * Object.keys(names).length)
+		] as Code,
 	]);
 	const [foundCountries, setFoundCountries] = useState<boolean[]>([
 		false,
