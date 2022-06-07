@@ -9,8 +9,10 @@ export function getCode(name: string): Code | undefined {
 		if (code === name) {
 			return code as Code;
 		}
-		if (names[code as Code].includes(name.toLowerCase())) {
-			return code as Code;
+		for (const cName of names[code as Code]) {
+			if (cName.toLowerCase() === name.toLowerCase()) {
+				return code as Code;
+			}
 		}
 	}
 }
