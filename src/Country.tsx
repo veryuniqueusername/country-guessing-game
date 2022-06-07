@@ -197,10 +197,10 @@ export default function Country({
 					<RevealAll />
 				</div>
 				<div className="HintRow">
-					<Reveal value="borders" cost={70}>
+					<Reveal value="borders" cost={900}>
 						Bordering countries
 					</Reveal>
-					<Reveal value="borderCount" cost={900}>
+					<Reveal value="borderCount" cost={70}>
 						Border count
 					</Reveal>
 				</div>
@@ -222,12 +222,12 @@ export default function Country({
 					<Reveal value="populationRank" cost={100}>
 						Population Ranking
 					</Reveal>
-					<Reveal value="population" cost={100}>
+					<Reveal value="population" cost={150}>
 						Population
 					</Reveal>
 				</div>
 				<div className="HintRow">
-					<Reveal value="flagColors" cost={100}>
+					<Reveal value="flagColors" cost={80}>
 						Flag colors
 					</Reveal>
 				</div>
