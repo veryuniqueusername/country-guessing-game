@@ -6,7 +6,10 @@ export function getName(code: Code) {
 
 export function getCode(name: string): Code | undefined {
 	for (const code in names) {
-		if (names[code as Code].includes(name)) {
+		if (code === name) {
+			return code as Code;
+		}
+		if (names[code as Code].includes(name.toLowerCase())) {
 			return code as Code;
 		}
 	}
@@ -17,10 +20,12 @@ export type CountryType = {
 	area: number;
 	areaRank: number;
 	borders: Code[];
+	borderCount: number;
 	capital: string;
 	coastal: boolean;
 	continent: Continent;
 	flagColors: Color[];
+	flagColorCount: number;
 	government: Government;
 	headOfState: string;
 	population: number;

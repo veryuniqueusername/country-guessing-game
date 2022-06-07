@@ -30,11 +30,12 @@ export default function App() {
 		{ index: 4, code: 'se', found: false, score: 250 },
 	]);
 	const [wrongCountries, setWrongCountries] = useState<Code[]>([]);
-	const [popUpClasses, setPopUpClasses] = useState('');
 	const [score, setScore] = useState(200);
 	const [newScore, setNewScore] = useState(200);
 	const totalScoreIntervalRef = useRef(0);
 	const totalScoreRef = useRef(score);
+
+	const [popUpClasses, setPopUpClasses] = useState('');
 
 	// POP UP
 	useEffect(() => {
@@ -48,6 +49,12 @@ export default function App() {
 			}, 450);
 		}
 	}, [popUpClasses]);
+
+	function popUp(text: string, type: string) {
+		let popup = document.getElementById('PopUp');
+		popup!.innerHTML = text;
+		setPopUpClasses(`visible ${type}`);
+	}
 
 	// SCORE ANIMATION
 	useEffect(() => {
@@ -130,12 +137,6 @@ export default function App() {
 			newFoundCountries[index] = true;
 			return newFoundCountries;
 		});
-	}
-
-	function popUp(text: string, type: string) {
-		let popup = document.getElementById('PopUp');
-		popup!.innerHTML = text;
-		setPopUpClasses(`visible ${type}`);
 	}
 
 	return (

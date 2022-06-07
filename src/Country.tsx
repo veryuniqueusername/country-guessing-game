@@ -2,6 +2,7 @@ import { useState } from 'preact/hooks';
 import ChevronUp from 'mdi-preact/ChevronUpIcon';
 import ChevronDown from 'mdi-preact/ChevronDownIcon';
 import uniList from './json/all.json';
+import names from './json/names.json';
 import { Code, CountryType } from './util';
 
 export default function Country({
@@ -62,9 +63,9 @@ export default function Country({
 			government: true,
 			headOfState: true,
 			area: true,
-			areaRanking: true,
+			areaRank: true,
 			population: true,
-			populationRanking: true,
+			populationRank: true,
 			religion: true,
 		});
 	}
@@ -83,15 +84,50 @@ export default function Country({
 		children: string;
 	}) {
 		function localReveal() {
+			if (info.score < cost) {
+				return;
+			}
 			setRevealedHints({ ...revealedHints, [value]: true });
 			removeScore(cost);
+		}
+
+		function fixUp(value: string | number | boolean | string[]): string {
+			if (typeof value === 'object') {
+				for (let i = 0; i < value.length; i++) {
+					value[i] = fixUp(value[i]);
+				}
+				return value.join(', ');
+			}
+
+			if (typeof value === 'string') {
+				if (Object.keys(names).includes(value)) {
+					value = names[value as Code][0];
+				}
+				value = value.charAt(0).toUpperCase() + value.slice(1);
+			}
+
+			if (typeof value === 'number') {
+				if (value >= 1000000) {
+					value = (value / 1000000).toFixed(1) + 'M';
+				} else if (value >= 1000) {
+					value = (value / 1000).toFixed(1) + 'K';
+				}
+				value = value.toString();
+			}
+
+			if (typeof value === 'boolean') {
+				value = value.toString();
+				value = value.charAt(0).toUpperCase() + value.slice(1);
+			}
+
+			return value;
 		}
 
 		return (
 			<div className="Reveal">
 				<p className="infoDesc">{children}</p>
 				{revealedHints[value] ? (
-					<p>{uniList[info.code][value as keyof CountryType].toString()}</p>
+					<p>{fixUp(uniList[info.code][value as keyof CountryType])}</p>
 				) : (
 					<button onClick={localReveal} className="revealButton">
 						Reveal <span className="cost">-{cost}</span>
@@ -150,23 +186,42 @@ export default function Country({
 			</div>
 			<div className="Hints">
 				<div className="HintRow">
-					<Reveal value="continent" cost={40}>
+					<Reveal value="continent" cost={100}>
 						Continent
 					</Reveal>
-					<Reveal value="government" cost={40}>
-						Government
+					<Reveal value="coastal" cost={40}>
+						Coastal
 					</Reveal>
 					<RevealAll />
 				</div>
 				<div className="HintRow">
-					<Reveal value="coastal" cost={50}>
-						Coastal
-					</Reveal>
 					<Reveal value="borderCount" cost={70}>
 						Border count
 					</Reveal>
-					<Reveal value="borders" cost={200}>
+					<Reveal value="borders" cost={900}>
 						Bordering countries
+					</Reveal>
+				</div>
+				<div className="HintRow">
+					<Reveal value="government" cost={50}>
+						Government
+					</Reveal>
+					<Reveal value="headOfState" cost={200}>
+						Head of State
+					</Reveal>
+					<Reveal value="capital" cost={300}>
+						Capital
+					</Reveal>
+				</div>
+				<div className="HintRow">
+					<Reveal value="areaRank" cost={100}>
+						Area Ranking
+					</Reveal>
+					<Reveal value="populationRank" cost={100}>
+						Population Ranking
+					</Reveal>
+					<Reveal value="population" cost={100}>
+						Population
 					</Reveal>
 				</div>
 			</div>
