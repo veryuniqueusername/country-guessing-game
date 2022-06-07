@@ -230,6 +230,9 @@ export default function Country({
 					<Reveal value="flagColors" cost={80}>
 						Flag colors
 					</Reveal>
+					<Reveal value="religion" cost={100}>
+						Largest religion
+					</Reveal>
 				</div>
 			</div>
 		</div>
