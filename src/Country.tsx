@@ -165,7 +165,7 @@ export default function Country({
 	return (
 		<div
 			className="Country"
-			style={{ height: `${expanded ? '640px' : '50px'}` }}
+			style={{ height: `${expanded ? '400px' : '50px'}` }}
 		>
 			<div className="HeaderDiv" onClick={expand}>
 				<span>
